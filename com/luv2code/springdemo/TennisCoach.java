@@ -1,12 +1,14 @@
 package com.luv2code.springdemo;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("prototype")
 public class TennisCoach implements Coach {
 	@Autowired
 	@Qualifier("randomFortuneService")
@@ -15,6 +17,18 @@ public class TennisCoach implements Coach {
 	//define default constructor
 	public TennisCoach() {
 		System.out.println(">> inside tennis coach constructor");
+	}
+	
+	//define my init method
+	@PostConstruct
+	public void doMyStartUpStuff() {
+		System.out.println(">>tennicCoach : inside domy-startupstuff method");
+	}
+	
+	//define my destroy method
+	@PreDestroy
+	public void doMyShutdownStuff() {
+		System.out.println(">>tennicCoach : inside domy-shutdownstuff method");
 	}
 	
 	/*
